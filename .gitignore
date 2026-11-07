@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# JavaScript
+atlas-ui/node_modules/
+atlas-ui/dist/
+
+# Local configuration and generated data
+.env
+.env.*
+*.sqlite3
+
+# Workspace metadata
+.agents/
+.codex/
+.aws/
+.git-meta/
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
