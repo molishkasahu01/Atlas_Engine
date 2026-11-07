@@ -2,6 +2,9 @@
 
 Automated scholarship discovery, extraction, verification, confidence scoring, and differential change-detection engine designed for Indian student funding opportunities.
 
+## Live Application
+https://atlas-rsn6.onrender.com
+
 ## 1. Architecture & Pipeline
 The engine executes a 7-stage automated cycle:
 1. **Discovery**: Multi-source seed expansion targeting government domains (`.gov.in`, `.ac.in`), CSR foundations, and educational institutions.
@@ -34,3 +37,4 @@ python crawler.py
 
 # 3. Launch the Streamlit dashboard
 streamlit run app.py
+```
