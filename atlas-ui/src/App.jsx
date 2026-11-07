@@ -1,5 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 
+const API_BASE_URL = "https://atlas-engine-backend.onrender.com";
+
 const isVerified = (s) => s.score >= 95 && s.status !== "EXPIRED" && s.status !== "REVIEW_REQUIRED";
 function pillMeta(s) {
   if (s.status === "EXPIRED") return { bg: "bg-rose", text: `EXPIRED: ${Math.round(s.score)}%` };
@@ -128,7 +130,7 @@ export default function App() {
 
   const fetchData = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/scholarships");
+      const res = await fetch(`${API_BASE_URL}/api/scholarships`);
       const data = await res.json();
       setScholarships(data);
     } catch (err) { console.error("Is FastAPI running?", err); }
@@ -139,7 +141,7 @@ export default function App() {
   const triggerCrawl = async () => {
     setCrawling(true);
     try {
-      await fetch("http://localhost:8000/api/crawl", { method: "POST" });
+      await fetch(`${API_BASE_URL}/api/crawl`, { method: "POST" });
       setTimeout(async () => { await fetchData(); setCrawling(false); }, 6000);
     } catch (e) { setCrawling(false); }
   };
