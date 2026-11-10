@@ -7,4 +7,4 @@ urllib3>=2.0.0
 fastapi>=0.110.0
 uvicorn>=0.28.0
 scrapy>=2.11.0
-python-dateutil>=2.9.0
+pypdf>=4.0.0

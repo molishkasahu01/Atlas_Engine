@@ -16,17 +16,17 @@ ADDONS = {}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "atlas_crawler (+http://www.yourdomain.com)"
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
 # Concurrency and throttling settings
 #CONCURRENT_REQUESTS = 16
-CONCURRENT_REQUESTS_PER_DOMAIN = 8
+CONCURRENT_REQUESTS_PER_DOMAIN = 4
 DOWNLOAD_DELAY = 0.25
 RETRY_ENABLED = True
-RETRY_TIMES = 1
+RETRY_TIMES = 2
 DOWNLOAD_TIMEOUT = 15
 HTTPERROR_ALLOW_ALL = True
 
@@ -63,9 +63,9 @@ HTTPERROR_ALLOW_ALL = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "atlas_crawler.pipelines.AtlasCrawlerPipeline": 300,
-#}
+ITEM_PIPELINES = {
+    "atlas_crawler.pipelines.AtlasVerificationPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

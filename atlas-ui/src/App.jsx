@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from "react";
 
-const API_BASE_URL = "https://atlas-engine-backend.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://atlas-engine-backend.onrender.com";
 
 const isVerified = (s) => s.score >= 95 && s.status !== "EXPIRED" && s.status !== "REVIEW_REQUIRED";
 function pillMeta(s) {

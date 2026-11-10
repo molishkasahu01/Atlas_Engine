@@ -1,8 +1,8 @@
-from fastapi import FastAPI, BackgroundTasks
-from fastapi.middleware.cors import CORSMiddleware
-import sqlite3
 import json
 import subprocess
+import sys
+from fastapi import FastAPI, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
 from database import get_connection
 
 app = FastAPI()
@@ -26,7 +26,7 @@ def get_scholarships():
 
     formatted_data = []
     for s in scholarships_raw:
-        raw_breakdown = json.loads(s["confidence_breakdown"])
+        raw_breakdown = json.loads(s["confidence_breakdown"] or "{}")
         breakdown_array = [{"label": k.replace("_", " ").title(), "points": v["points"], "max": v["max"], "detail": v["detail"]} for k, v in raw_breakdown.items()]
             
         evidence_array = [{"field": e["field_name"], "value": e["extracted_value"], "snippet": e["source_snippet"]} for e in evidence_raw if e["scholarship_id"] == s["id"]]
@@ -40,7 +40,7 @@ def get_scholarships():
     return formatted_data
 
 def run_spider():
-    subprocess.run(["scrapy", "crawl", "portal_spider"])
+    subprocess.run([sys.executable, "-m", "scrapy", "crawl", "portal_spider"])
 
 @app.post("/api/crawl")
 def trigger_crawl(background_tasks: BackgroundTasks):
